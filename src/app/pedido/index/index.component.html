@@ -1,0 +1,71 @@
+<!--NAV-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"  style="height: 60px;">
+    <a class="navbar-brand" href="#">Lavadero.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/seguir-pedido">Mi pedido</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/historial-de-lavados">Historial de Lavados</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--BUTTONS-->
+  <div class="container my-3">
+  <button type="button" class="btn btn-primary" routerLink="/pedido/create">Realizar Pedido</button>
+  <button type="button" class="btn btn-outline-success" routerLink="/empleados" style="margin-left: 5px;">Lista de empleados</button>
+  <button type="button" class="btn btn-outline-success" style="margin-left: 5px;">Agregar empleado</button>
+  <hr>
+</div>
+<!--PEDIDOS-->
+<div class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+              <th>Id</th>
+              <th>Id_servicio</th>
+              <th>Monto</th>
+              <th>Nombre/Razón Social</th>
+              <th>CI/RUC</th>
+              <th>Descripcion del Vehiculo</th>
+              <th>Color</th>
+              <th>Chapa</th>
+              <th>Id_Empleado_Encargado</th>
+              <th>Fecha:Hora</th>
+              <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of pedidos">
+            <td>{{p.id}}</td>
+            <td>{{p.id_servicio}}</td>
+            <td>{{p.monto}}</td>
+            <td>{{p.nombre}}</td>
+            <td>{{p.ci}}</td>
+            <td>{{p.descripcion_vehiculo}}</td>
+            <td>{{p.color_vehiculo}}</td>
+            <td>{{p.chapa_vehiculo}}</td>
+            <td>{{p.id_empleado_encargado}}</td>
+            <td>{{p.created_at}}</td>
+            <td>
+              <button type="button"  class="btn btn-danger" style="margin: 5px;" (click)="deletePedido(p.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              </svg></button>
+              <button type="button" class="btn btn-primary" style="margin: 5px;" [routerLink]="['/pedido/', p.id, 'edit']">Editar</button>
+              <button type="button" class="btn btn-success" style="margin: 5px;">Finalizar<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+              </svg></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
