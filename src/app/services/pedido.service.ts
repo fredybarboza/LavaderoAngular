@@ -56,6 +56,10 @@ export class PedidoService {
     )
   }
 
+  finalizar(id){
+    return this.httpClient.put(this.apiURL+'/finalizados/'+id,id);
+  }
+
   errorHandler(error:any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

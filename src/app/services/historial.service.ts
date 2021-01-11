@@ -4,39 +4,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-
-
-import {Empleado, Collection } from '../models/empleado'
+import {Pedido, Collection, Entity } from '../models/pedido'
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmpleadoService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-
-  constructor(private httpClient: HttpClient) { }
+export class HistorialService {
 
   private apiURL = "http://127.0.0.1:8000/api";
 
+  constructor(private httpClient: HttpClient) { }
+
   getAll(): Observable<Collection> {
-    return this.httpClient.get<Collection>(this.apiURL + '/empleados')
+    return this.httpClient.get<Collection>(this.apiURL + '/finalizados')
     .pipe(
       catchError(this.errorHandler)
     )
   }
-
-  create(empleado:Empleado): Observable<Empleado> {
-    return this.httpClient.post<Empleado>(this.apiURL + '/empleados', JSON.stringify(empleado), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }  
-  
 
   errorHandler(error:any) {
     let errorMessage = '';
@@ -47,4 +31,12 @@ export class EmpleadoService {
     }
     return throwError(errorMessage);
  }
+ //MÉTODO PARA MOSTRAR FACTURA
+ find(id:number): Observable<Entity> {
+  return this.httpClient.get<Entity>('http://127.0.0.1:8000/api/finalizados/'+ id)
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+
 }

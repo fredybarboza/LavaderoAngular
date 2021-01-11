@@ -1,17 +1,22 @@
-<div class="container">
+<div class="container my-3">
+    <button type="button" class="btn btn-primary" routerLink="/index">Back</button>
+<div class="container my-3 py-3" style="background: lightgray; border-radius: 5px;">
+    <h4>Reasignar Empleado Encargado</h4>
+    <hr>
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="form-group">
             <label for="id_empleado_encargado">ID EMPLEADO ENCARGADO</label>
             <input 
                 formControlName="id_empleado_encargado"
                 id="id_empleado_encargado" 
-                type="text" 
+                type="number" 
                 [(ngModel)]="pedido.id_empleado_encargado"
                 class="form-control">
             <div *ngIf="f.id_empleado_encargado.touched && f.id_empleado_encargado.invalid" class="alert alert-danger">
-                <div *ngIf="f.id_empleado_encargado.errors.required">Title is required.</div>
+                <div *ngIf="f.id_empleado_encargado.errors.required">El ID es obligatorio</div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
     </form>
+</div>
 </div>

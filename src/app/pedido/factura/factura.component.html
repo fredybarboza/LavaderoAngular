@@ -1,0 +1,56 @@
+<div class="container my-3">
+  <a href="/historial">Back</a>
+    <hr>  
+<div class="container my-3" style="border: 1px solid gainsboro;">
+  
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+                CAR.WASH <br>
+                <hr>
+                Mcal. Estigarribia 123 <br>
+                Coronel Bogado-Itapúa Py. <br>
+                Tel 0741 500 00
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">FACTURA N° {{pedido.id}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td><b>NOMBRE</b></td>
+            <td><b>CI/RUC</b></td>
+            <td><b>VEHICULO</b></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>{{pedido.nombre}}</td>
+            <td>{{pedido.ci}}</td>
+            <td>{{pedido.descripcion_vehiculo}}</td>
+          </tr>
+          <tr>
+            <td><b>ID</b></td>
+            <td><b>DESCRIPCIÓN</b></td>
+            <td><b>FECHA</b></td>
+            <td><b>Sub Total</b></td>
+          </tr>
+          <tr>
+              <td>{{pedido.id}}</td>
+              <td>Lavado {{pedido.id_servicio}}</td>
+              <td>{{pedido.created_at}}</td>
+              <td>{{pedido.monto}}</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td></td>
+              <td><b>TOTAL</b></td>
+              <td><b>{{pedido.monto}}</b></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>

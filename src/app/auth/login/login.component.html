@@ -1,8 +1,8 @@
-<div class="row">
+<div class="container my-3">
     <div class="col-md-4 offset-md-4">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title text-center">Login</h5>
+                <h5 class="card-title text-center">Ingresar</h5>
                 <small id="emailHelp" class="form-text text-muted" *ngIf="serverErrors">{{ serverErrors }}</small>
                 <hr>
               </div>
@@ -12,17 +12,17 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>User Name</label>
+                        <label>Correo</label>
                         <input type="text" formControlName="email" class="form-control" placeholder="Email">
                       </div>
 
                       <div *ngIf="email.invalid && (email.dirty || email.touched)"
                               class="form-text text-muted">
                             <div *ngIf="email.errors?.required">
-                              Correo electronico requerido
+                              Correo electrónico obligatorio
                             </div>
                             <div *ngIf="email.errors?.email">
-                              Correo Invalido
+                              Correo no válido
                             </div>
                       </div> 
                     </div>
@@ -31,17 +31,17 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                        <label for="exampleInputEmail1">Contraseña</label>
+                        <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
                       </div>
 
                       <div *ngIf="password.invalid && (password.dirty || password.touched)"
                               class="form-text text-muted">
                             <div *ngIf="password.errors?.required">
-                             Password Requerido
+                             Contraseña obligatoria
                             </div>
                             <div *ngIf="password.errors?.minlength">
-                             Tiene que ser 8 caracteres
+                             Minimo de 8 caracteres
                             </div>
                       </div>
                     </div>
@@ -55,5 +55,7 @@
                 </form>
               </div>
             </div>
+            <a href="/register" style="margin: 5px;">Registrarse</a>
           </div>
+          
 </div>

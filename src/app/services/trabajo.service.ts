@@ -1,42 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Pedido ,Entity, Collection} from '../models/pedido';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-
-
-import {Empleado, Collection } from '../models/empleado'
-
 @Injectable({
   providedIn: 'root'
 })
-export class EmpleadoService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+export class TrabajoService {
 
   constructor(private httpClient: HttpClient) { }
 
   private apiURL = "http://127.0.0.1:8000/api";
 
-  getAll(): Observable<Collection> {
-    return this.httpClient.get<Collection>(this.apiURL + '/empleados')
+  obtenerTrabajos(id:number): Observable<Collection> {
+    return this.httpClient.get<Collection>(this.apiURL + '/empleados/'+id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-
-  create(empleado:Empleado): Observable<Empleado> {
-    return this.httpClient.post<Empleado>(this.apiURL + '/empleados', JSON.stringify(empleado), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }  
-  
 
   errorHandler(error:any) {
     let errorMessage = '';

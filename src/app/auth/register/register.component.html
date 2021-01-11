@@ -1,8 +1,8 @@
-<div class="row">
+<div class="container my-3">
     <div class="col-md-4 offset-md-4">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title text-center">Register</h5>
+                <h5 class="card-title text-center">Registrarse</h5>
                 <hr>
               </div>
               <div class="card-body">
@@ -10,15 +10,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" formControlName="name" class="form-control" placeholder="name" required>
+                        <label>Nombre De Usuario</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Nombre de usuario" required>
                         <div *ngIf="name.invalid && (name.dirty || name.touched)"
                                 class="form-text text-muted">
                               <div *ngIf="name.errors?.required">
                                 Nombre requerido
                               </div>
                               <div *ngIf="name.errors?.minlength">
-                                El nombre debe tener mas de 5 caracteres
+                                El nombre de usuario debe tener más de 5 caracteres.
                               </div>
                         </div> 
                         <small id="emailHelp" class="form-text text-muted" *ngIf="serverErrors">{{ serverErrors }}</small>
@@ -28,24 +28,18 @@
                 </div>
                         
                  <div class="row">
-                    <!-- <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>User Name</label>
-                        <input type="text" class="form-control" placeholder="Username">
-                      </div>
-                    </div> -->
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Correo</label>
-                        <input type="email" formControlName="email" class="form-control" placeholder="ingrese un correo valido" required>
+                        <input type="email" formControlName="email" class="form-control" placeholder="Correo" required>
                         
                         <div *ngIf="email.invalid && (email.dirty || email.touched)"
                                 class="form-text text-muted">
                               <div *ngIf="email.errors?.required">
-                                Correo requerido
+                                Correo Obligatorio
                               </div>
                               <div *ngIf="email.errors?.email">
-                                Correo invalido
+                                Correo no válido
                               </div>
                         </div> 
 
@@ -57,16 +51,16 @@
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+                        <label>Contraseña</label>
+                        <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
                         
                         <div *ngIf="password.invalid && (password.dirty || password.touched)"
                                 class="form-text text-muted">
                               <div *ngIf="password.errors?.required">
-                                Password es requerido
+                                La contraseña es obligatoria
                               </div>
                               <div *ngIf="password.errors?.minlength">
-                                Tiene que ser mas de 8 caracteres
+                                La contraseña debe tener 8 caracteres como minimo
                               </div>
                         </div>
 
@@ -77,16 +71,16 @@
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" formControlName="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+                        <label>Confirme su contraseña</label>
+                        <input type="password" formControlName="password_confirmation" class="form-control" placeholder="Confirme su contraseña" required>
                         
                         <div *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)"
                                 class="form-text text-muted">
                               <div *ngIf="password_confirmation.errors?.required">
-                                Confirme su password
+                                Confirme su contraseña
                               </div>
                               <div *ngIf="password_confirmation.errors?.minlength">
-                                Tiene que tener la misma cantidad minima de caracteres de el original
+                                Las contraseñas no coinciden
                               </div>
                         </div>
 
@@ -103,5 +97,6 @@
                 </form>
               </div>
             </div>
+            <a href="/login" style="margin: 5px;">Ingresar</a>
           </div>
 </div>

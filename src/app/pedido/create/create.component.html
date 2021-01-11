@@ -1,110 +1,137 @@
-<div class="container">
-    <h3>Create new Pedido</h3>
-
+<div class="container my-3">
+    <button type="button" class="btn btn-primary" routerLink="/index">Back</button>
+    <hr style="border: 1px solid #4040ff;">
+    <h3>Nuevo Pedido</h3>
+    <hr style="border: 1px solid #4040ff;;">
     <form [formGroup]="form" (ngSubmit)="submit()" >
+       <!--Categoria-->
+       <label><b>CATEGORIA DEL VEHICULO</b></label><br>
+       <label class="radio-inline my-3" style="margin: 5px;">
+        <input type="radio" name="cat" (click)="setShow(1);"> Automóvil
+    </label>
+    <label class="radio-inline my-3" style="margin: 5px;">
+        <input type="radio" name="cat" (click)="setShow(2);"> Camioneta
+    </label>
+    <label class="radio-inline my-3" style="margin: 5px;">
+        <input type="radio" name="cat" (click)="setShow(3);"> Motocicleta
+    </label>
+    <label class="radio-inline my-3" style="margin: 5px;">
+        <input type="radio" name="cat" (click)="setShow(4);"> Maquinaria Agricola
+    </label>
+    <label class="radio-inline my-3" style="margin: 5px;">
+        <input type="radio" name="cat" (click)="setShow(5);"> Camión
+    </label>
+    <hr>
         <!--SERVICIO-->
         <div class="form-group">
-            <label for="servicio">id_servicio</label>
-            <input formControlName="id_servicio" id="id_servicio"  type="radio" class="form-control" value="1" (click)="show=1"> FULL
-            <input formControlName="id_servicio" id="id_servicio2" type="radio" class="form-control" value="2" (click)="show=2"> SEMI
+            <label for="servicio"><b>SERVICIOS</b></label><br>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+            <input formControlName="id_servicio" id="id_servicio"  type="radio"  value="1" (click)="getPrice(1)"> FULL
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+            <input formControlName="id_servicio" id="id_servicio2" type="radio"  value="2" (click)="getPrice(2)"> EXTERIOR+
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_servicio" id="id_servicio2" type="radio"  value="3" (click)="getPrice(3)"> EXTERIOR ECO
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_servicio" id="id_servicio2" type="radio"  value="4" (click)="getPrice(4)"> SEMI+
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_servicio" id="id_servicio2" type="radio"  value="5" (click)="getPrice(5)"> INTERIOR
+            </label>
             <div *ngIf="f.id_servicio.touched && f.id_servicio.invalid" class="alert alert-danger">
-                <div *ngIf="f.id_servicio.errors.required">Title is required.</div>
+                <div *ngIf="f.id_servicio.errors.required">Service is required.</div>
             </div>
         </div>
-        <!--Categoria-->
-        <label for="">
-            <input type="radio" name="cat" (click)="getPrice(1);">Auto
-        </label>
-        <label for="">
-            <input type="radio" name="cat" (click)="getPrice(2);">Camioneta
-        </label>
-        
+        <div id="service"></div>
+        <div class="alert alert-danger" role="alert" *ngIf="show;">
+            Este servicio no está disponible para ésta categoria de vehiculo.
+          </div>
+        <hr>
         <!--MONTO-->
         <div class="form-group">
-            <label for="monto">monto</label>
-            <input 
-                formControlName="monto"
-                id="monto" 
-                type="radio" 
-                class="form-control"
-                value="{{precio}}"> {{precio}}
+            <label for="monto"><b>PRECIO</b></label><br>
+            <label>
+            <input formControlName="monto" id="monto" type="text" [(ngModel)]="precio" value="{{precio}}" readonly> 
+            </label>
             <div *ngIf="f.monto.touched && f.monto.invalid" class="alert alert-danger">
-                <div *ngIf="f.monto.errors.required">Title is required.</div>
+                <div *ngIf="f.monto.errors.required">Precio no disponible para este servicio.</div>
             </div>
         </div>
         <!--NOMBRE-->
         <div class="form-group">
-            <label for="name">nombre</label>
+            <label for="name"><b>NOMBRE Y APELLIDO</b></label>
             <input 
                 formControlName="nombre"
                 id="nombre" 
                 type="text" 
                 class="form-control">
             <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
-                <div *ngIf="f.nombre.errors.required">Title is required.</div>
+                <div *ngIf="f.nombre.errors.required">El NOMBRE y APELLIDO es obligatorio.</div>
             </div>
         </div>
         <!--CI-->
         <div class="form-group">
-            <label for="ci">ci</label>
+            <label for="ci"><b>N° CI</b></label>
             <input 
                 formControlName="ci"
                 id="ci" 
                 type="text" 
                 class="form-control">
             <div *ngIf="f.ci.touched && f.ci.invalid" class="alert alert-danger">
-                <div *ngIf="f.ci.errors.required">Title is required.</div>
+                <div *ngIf="f.ci.errors.required">El N° de CI es obligatorio</div>
             </div>
         </div>
         <!--Descripcion_vehiculo-->
         <div class="form-group">
-            <label for="descripcion">descripcion_vehiculo</label>
+            <label for="descripcion"><b>DESCRIPCIÓN DEL VEHICULO</b></label>
             <input 
                 formControlName="descripcion_vehiculo"
                 id="descripcion_vehiculo" 
                 type="text" 
                 class="form-control">
             <div *ngIf="f.descripcion_vehiculo.touched && f.descripcion_vehiculo.invalid" class="alert alert-danger">
-                <div *ngIf="f.descripcion_vehiculo.errors.required">Title is required.</div>
+                <div *ngIf="f.descripcion_vehiculo.errors.required">La DESCRIPCION DEL VEHICULO es obligatoria</div>
             </div>
         </div>
         <!--COLOR-->
         <div class="form-group">
-            <label for="color">color</label>
+            <label for="color"><b>COLOR DEL VEHICULO</b></label>
             <input 
                 formControlName="color_vehiculo"
                 id="color_vehiculo" 
                 type="text" 
                 class="form-control">
             <div *ngIf="f.color_vehiculo.touched && f.color_vehiculo.invalid" class="alert alert-danger">
-                <div *ngIf="f.color_vehiculo.errors.required">Title is required.</div>
+                <div *ngIf="f.color_vehiculo.errors.required">El Color es obligatorio</div>
             </div>
         </div>
         <!--CHAPA-->
         <div class="form-group">
-            <label for="chapa">chapa</label>
+            <label for="chapa"><b>CHAPA</b></label>
             <input 
                 formControlName="chapa_vehiculo"
                 id="chapa_vehiculo" 
                 type="text" 
                 class="form-control">
             <div *ngIf="f.chapa_vehiculo.touched && f.chapa_vehiculo.invalid" class="alert alert-danger">
-                <div *ngIf="f.chapa_vehiculo.errors.required">Title is required.</div>
+                <div *ngIf="f.chapa_vehiculo.errors.required">La chapa es obligatoria</div>
             </div>
         </div>
         <!--id_empleado_encargado-->
         <div class="form-group">
-            <label for="empleado">id_empleado</label>
+            <label for="empleado"><b>ID EMPLEADO ASIGNADO</b> | <button type="button" class="btn btn-link" routerLink="/empleados">Lista de empleados</button></label>
             <input 
                 formControlName="id_empleado_encargado"
                 id="id_empleado_encargado" 
-                type="text" 
+                type="number" 
                 class="form-control">
             <div *ngIf="f.id_empleado_encargado.touched && f.id_empleado_encargado.invalid" class="alert alert-danger">
-                <div *ngIf="f.id_empleado_encargado.errors.required">Title is required.</div>
+                <div *ngIf="f.id_empleado_encargado.errors.required">El ID EMPLEADO ASIGNADO ES OBLIGATORIO</div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
     </form>
     
     

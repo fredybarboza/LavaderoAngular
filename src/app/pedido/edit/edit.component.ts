@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
     console.log(this.form.value);
     this.pedidoService.update(this.id, this.form.value).subscribe(res => {
          console.log(res);
-         //this.router.navigateByUrl('project/index');
+         this.router.navigateByUrl('index');
     })
   }
 
