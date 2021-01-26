@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
-import { Pedido ,Collection} from '../../models/pedido'
+import { Vehiculo ,Collection} from '../../models/vehiculo';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { VehiculoService } from 'src/app/services/vehiculo.service';
 
 @Component({
   selector: 'app-index',
@@ -10,36 +12,37 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  pedidos: Pedido[] = [];
 
-  constructor(public pedidoService: PedidoService, private router: Router) {}
+  vehiculos: Vehiculo[]=[];
+  id: string;
+  constructor(public pedidoService: PedidoService, private router: Router, private userService: UserService,private vehiculoService: VehiculoService) {}
 
   ngOnInit(): void {
-    this.pedidoService.getAll().subscribe((data: Collection)=>{
-      this.pedidos = data.pedidos;
-      //console.log(this.pedidos);
-    })  
-  }
-
-  deletePedido(id:number){
-    this.pedidoService.delete(id).subscribe(res => {
-         this.pedidos = this.pedidos.filter(item => item.id !== id);
-         console.log('Project deleted successfully!');
-    })
-  }
-
-  finalizarPedido(id){
-    this.pedidoService.finalizar(id).subscribe(data => {
-      alert('Finalizado'),
-      //console.log(data);
-      this.router.navigateByUrl('historial');
-    },error => {
-      console.log(error);
-      alert('Ocurrio un error');
-    }
+    this.id=localStorage.getItem('id');
     
-    );
+    if(this.id==null){
+      this.router.navigateByUrl('login');
+    }
+    else{
+      this.vehiculoService.getVehiculos(this.id).subscribe((data: Collection)=>{
+        this.vehiculos = data.vehiculos;
+        console.log(this.vehiculos);
+      });
+    }  
   }
+
+  salir(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    this.router.navigateByUrl('login');
+  }
+  
+  metodo(id_categoria){
+    localStorage.setItem('id_categoria', id_categoria);
+  }
+  
+
+  
 
   
 

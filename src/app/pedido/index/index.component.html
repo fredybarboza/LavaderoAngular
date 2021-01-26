@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item active">
           
-            
+          <button type="button" class="btn btn-link" (click)=salir()>Cerrar Sesión</button>
           
         </li>
       </ul>
@@ -22,46 +22,34 @@
   </nav>
   <!--BUTTONS-->
   <div class="container my-3">
-  <button type="button" class="btn btn-primary" routerLink="/pedido/create" style="margin-right: 10px;">Realizar Pedido</button>
-  <button type="button" class="btn btn-outline-success" routerLink="/empleados" style="margin-left: 5px;">Lista de empleados</button>
-  <button type="button" class="btn btn-outline-success" style="margin-left: 5px;" routerLink="/empleados/crear">Agregar empleado</button>
   <button type="button" class="btn btn-outline-primary" routerLink="/historial" style="margin-left: 10px;">Historial de Lavados</button>
   <hr>
 </div>
-<!--PEDIDOS-->
+<!--VEHICULOS-->
+{{id}}
 <div class="container my-3">
     <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
-              <th>Id</th>
-              <th>Id_servicio</th>
-              <th>Monto</th>
-              <th>Nombre</th>
-              <th>CI/RUC</th>
-              <th>Vehiculo</th>
-              <th>Color</th>
-              <th>Chapa</th>
-              <th>Id_Empleado</th>
-              <th>Acción</th>
+              <th>ID</th>
+              <th>ID USUARIO</th>
+              <th>MARCA</th>
+              <th>MODELO</th>
+              <th>COLOR</th>
+              <th>MATRICULA</th>
+              <th>ACCIÓN</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of pedidos">
-            <td>{{p.id}}</td>
-            <td>{{p.id_servicio}}</td>
-            <td>{{p.monto}}</td>
-            <td>{{p.nombre}}</td>
-            <td>{{p.ci}}</td>
-            <td>{{p.descripcion_vehiculo}}</td>
-            <td>{{p.color_vehiculo}}</td>
-            <td>{{p.chapa_vehiculo}}</td>
-            <td>{{p.id_empleado_encargado}}</td>
+          <tr *ngFor="let v of vehiculos">
+            <td>{{v.id}}</td>
+            <td>{{v.id_usuario}}</td>
+            <td>{{v.marca}}</td>
+            <td>{{v.modelo}}</td>
+            <td>{{v.color}}</td>
+            <td>{{v.matricula}}</td>
             <td>
-              <button type="button"  class="btn btn-danger" style="margin: 5px;" (click)="deletePedido(p.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-              </svg></button>
-              <button type="button" class="btn btn-primary" style="margin: 5px;" [routerLink]="['/pedido/', p.id, 'edit']">Reasignar</button>
-              <button type="button" class="btn btn-success" style="margin: 5px;" (click)="finalizarPedido(p.id)" >Finalizar</button>
+              <button type="button" class="btn btn-primary" routerLink="/pedido/create/{{v.id}}" style="margin-right: 10px;" (click)="metodo(v.id_categoria)">Pedir Lavado</button>
             </td>
           </tr>
         </tbody>

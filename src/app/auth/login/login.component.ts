@@ -3,6 +3,7 @@ import { CommonAuthService } from '../common-auth.service';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   serverErrors = [];
 
-  constructor(private auth: CommonAuthService, private router: Router) { }
+  constructor(private auth: CommonAuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
       (response) => { 
         console.log(response.token);
         localStorage.removeItem('token');
-        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('id', response.id);
         alert("Estas dentro");
         this.router.navigate(['/index']);
       },

@@ -7,19 +7,17 @@ import { EditComponent } from '../app/pedido/edit/edit.component';
 import { ViewComponent } from './empleado/view/view.component';
 import { TrabajosComponent } from './empleado/trabajos/trabajos.component';
 import { HistorialComponent } from './pedido/historial/historial.component';
-import { FacturaComponent } from './pedido/factura/factura.component';
 import { CrearComponent } from './empleado/crear/crear.component';
 
 
 const routes: Routes = [
    { path: 'index', component: IndexComponent },
-   { path: 'pedido/create', component: CreateComponent },
+   { path: 'pedido/create/:vehiculoId', component: CreateComponent },
    { path: 'pedido/:pedidoId/edit', component: EditComponent },
    { path: 'empleados', component: ViewComponent },
    { path: 'empleados/crear', component: CrearComponent },
    { path: 'empleados/:pedidoId/view', component: TrabajosComponent },
    { path: 'historial', component: HistorialComponent },
-   { path: 'pedido/:pedidoId/factura', component: FacturaComponent },
  ];
 
 @NgModule({

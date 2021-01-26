@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Nombre De Usuario</label>
+                        
                         <input type="text" formControlName="name" class="form-control" placeholder="Nombre de usuario" required>
                         <div *ngIf="name.invalid && (name.dirty || name.touched)"
                                 class="form-text text-muted">
@@ -30,7 +30,7 @@
                  <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Correo</label>
+                        
                         <input type="email" formControlName="email" class="form-control" placeholder="Correo" required>
                         
                         <div *ngIf="email.invalid && (email.dirty || email.touched)"
@@ -51,7 +51,7 @@
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Contraseña</label>
+                        
                         <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
                         
                         <div *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -71,7 +71,7 @@
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                        <label>Confirme su contraseña</label>
+                        
                         <input type="password" formControlName="password_confirmation" class="form-control" placeholder="Confirme su contraseña" required>
                         
                         <div *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)"

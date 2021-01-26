@@ -20,7 +20,7 @@ export class AuthGuardService {
   }
 
   loggedInUser(){
-  console.log("hi");
+  console.log("Hola");
   	this.loggedIn = true;
   }
 

@@ -1,24 +1,23 @@
 export interface Collection {
     
-    pedidos: Pedido[];
+    vehiculos: Vehiculo[];
     message: string;
 }
 
 export interface Entity {
     
-    pedidos: Pedido;
+    vehiculos: Vehiculo;
     message: string;
 }
 
-export interface Pedido {
+export interface Vehiculo {
     
     id?: number;
     id_usuario: string;
-    id_vehiculo: string;
-    id_servicio: string;
-    monto: string;
-    estado?: string,
-    id_empleado_encargado: string,
+    marca: string;
+    modelo: string,
+    color: string,
+    matricula: string,
     created_at?: string;
     updated_at?: string;
 }
