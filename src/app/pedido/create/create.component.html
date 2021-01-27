@@ -52,7 +52,7 @@
        </div>
        <!--ID_CATEGORIA-->
        <div class="form-group">
-        <input formControlName="id_categoria" id="id_categoria" type="text" [(ngModel)]="categoria">
+        <input formControlName="id_categoria" id="id_categoria" type="text" [(ngModel)]="categoria" hidden>
        </div>
         <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
     </form>

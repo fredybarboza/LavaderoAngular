@@ -1,0 +1,59 @@
+<div class="container my-3 py-3">
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+        <!--ID USUARIO-->
+        <div class="form-group">
+            <input formControlName="id_usuario" [(ngModel)]="id_usuario" id="id_usuario" type="text" class="form-control" placeholder="id_usuario">
+        </div>
+        <!--CATEGORIA DEL VEHICULO-->
+        <div class="form-group">
+            <label for="categoria"><b>CATEGORIA</b></label><br>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+            <input formControlName="id_categoria" id="categoria1"  type="radio"  value="1"> AUTOMÓVIL
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+            <input formControlName="id_categoria" id="categoria2" type="radio"  value="2"> CAMIONETA
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_categoria" id="categoria3" type="radio"  value="3"> MOTOCICLETA
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_categoria" id="categoria4" type="radio"  value="4"> MAQUINARIA AGRICOLA
+            </label>
+            <label class="radio-inline my-3" style="margin-right: 5px;">
+                <input formControlName="id_categoria" id="categoria5" type="radio"  value="5"> CAMION DE CARGA O PASAJEROS
+            </label>
+            <!--<div *ngIf="f.id_servicio.touched && f.id_servicio.invalid" class="alert alert-danger">
+                <div *ngIf="f.id_servicio.errors.required">Service is required.</div>
+            </div>-->
+        </div>
+        <!--MARCA-->
+        <div class="form-group">
+            <input formControlName="marca" id="marca" type="text" class="form-control" placeholder="Marca">
+            <div *ngIf="f.marca.touched && f.marca.invalid" class="alert alert-danger">
+                <div *ngIf="f.marca.errors.required">Title is required.</div>
+            </div>
+        </div>
+        <!--MODELO-->
+        <div class="form-group">
+            <input formControlName="modelo" id="modelo" type="text" class="form-control" placeholder="Modelo">
+            <div *ngIf="f.modelo.touched && f.modelo.invalid" class="alert alert-danger">
+                <div *ngIf="f.modelo.errors.required">Title is required.</div>
+            </div>
+        </div>
+        <!--MATRICULA-->
+        <div class="form-group">
+            <input formControlName="matricula" id="matricula" type="text" class="form-control" placeholder="Matricula">
+            <div *ngIf="f.matricula.touched && f.matricula.invalid" class="alert alert-danger">
+                <div *ngIf="f.matricula.errors.required">Title is required.</div>
+            </div>
+        </div>
+        <!--COLOR-->
+        <div class="form-group">
+            <input formControlName="color" id="color" type="text" class="form-control" placeholder="Color">
+            <div *ngIf="f.color.touched && f.color.invalid" class="alert alert-danger">
+                <div *ngIf="f.color.errors.required">Title is required.</div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+    </form>
+</div>

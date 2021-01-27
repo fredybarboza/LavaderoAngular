@@ -28,6 +28,13 @@ export class VehiculoService {
     )
   }
 
+  create(vehiculo:Vehiculo): Observable<Vehiculo> {
+    return this.httpClient.post<Vehiculo>(this.apiURL + '/vehiculos', JSON.stringify(vehiculo), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }  
+
   errorHandler(error:any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

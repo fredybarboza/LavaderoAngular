@@ -16,10 +16,10 @@ import { IndexComponent } from './pedido/index/index.component';
 import { CreateComponent } from './pedido/create/create.component';
 import { Route, RouterModule } from '@angular/router';
 import { EditComponent } from './pedido/edit/edit.component';
-import { ViewComponent } from './empleado/view/view.component';
-import { TrabajosComponent } from './empleado/trabajos/trabajos.component';
+
 import { HistorialComponent } from './pedido/historial/historial.component';
-import { CrearComponent } from './empleado/crear/crear.component';
+import { AgregarComponent } from './vehiculo/agregar/agregar.component';
+
 
 
 
@@ -30,10 +30,9 @@ import { CrearComponent } from './empleado/crear/crear.component';
     IndexComponent,
     CreateComponent,
     EditComponent,
-    ViewComponent,
-    TrabajosComponent,
     HistorialComponent,
-    CrearComponent
+    AgregarComponent,
+
 
     
   ],
