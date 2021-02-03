@@ -14,10 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { IndexComponent } from './pedido/index/index.component';
 import { CreateComponent } from './pedido/create/create.component';
+import { MostrarComponent } from './pedido/mostrar/mostrar.component';
 import { Route, RouterModule } from '@angular/router';
-import { EditComponent } from './pedido/edit/edit.component';
 
-import { HistorialComponent } from './pedido/historial/historial.component';
+
+
 import { AgregarComponent } from './vehiculo/agregar/agregar.component';
 
 
@@ -29,9 +30,8 @@ import { AgregarComponent } from './vehiculo/agregar/agregar.component';
     AppComponent,
     IndexComponent,
     CreateComponent,
-    EditComponent,
-    HistorialComponent,
     AgregarComponent,
+    MostrarComponent
 
 
     

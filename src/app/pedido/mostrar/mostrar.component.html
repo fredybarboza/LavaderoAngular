@@ -1,0 +1,55 @@
+<div class="container my-1 py-3">
+    <button type="button" class="btn btn-dark" routerLink="/index">Home</button> <b> | Pedidos</b>
+    <hr>
+    <h5>Pedidos En Espera</h5>
+    <hr>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+              <th>ID</th>
+              <th>SERVICIO</th>
+              <th>MONTO</th>
+              <th>ID VEHICULO</th>
+              <th>ACCIÓN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of pedidos">
+            <td>{{p.id}}</td>
+            <td>{{p.id_servicio}}</td>
+            <td>{{p.monto}}</td>
+            <td>{{p.id_vehiculo}}</td>
+            <td>
+              <button type="button" class="btn btn-danger" style="margin-right: 10px;" (click)="deletePedido(p.id)">Cancelar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <hr>
+    <h5>Pedidos En ejecución</h5>
+    <hr>
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>SERVICIO</th>
+            <th>MONTO</th>
+            <th>ID VEHICULO</th>
+            <th>ESTADO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pedidosAprobados">
+          <td>{{p.id}}</td>
+          <td>{{p.id_servicio}}</td>
+          <td>{{p.monto}}</td>
+          <td>{{p.id_vehiculo}}</td>
+          <td>APROBADO</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    
+    <button type="button" class="btn btn-outline-primary">Historial</button>
+        
+</div>

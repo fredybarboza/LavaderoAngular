@@ -28,26 +28,23 @@ export class PedidoService {
     )
   }  
 
-  getAll(): Observable<Collection> {
-    return this.httpClient.get<Collection>(this.apiURL + '/pedidos')
+  getPedidos(id:string): Observable<Collection>
+  {
+    return this.httpClient.get<Collection>(this.apiURL + '/pedidos/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  update(id:number, pedido:Pedido): Observable<Pedido> {
-    return this.httpClient.put<Pedido>(this.apiURL + '/pedidos/' + id, JSON.stringify(pedido), this.httpOptions)
+  getAprobados(id:string): Observable<Collection>
+  {
+    return this.httpClient.get<Collection>(this.apiURL + '/aprobados/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  find(id:number): Observable<Entity> {
-    return this.httpClient.get<Entity>(this.apiURL + '/pedidos/' + id)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
+  
 
   delete(id:number){
     return this.httpClient.delete<Pedido>(this.apiURL + '/pedidos/' + id, this.httpOptions)
