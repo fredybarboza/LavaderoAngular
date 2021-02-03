@@ -13,6 +13,10 @@ export class MostrarComponent implements OnInit {
   pedidos: Pedido[]=[];
   pedidosAprobados: Pedido[]=[];
   id: string;
+  show: boolean=false;
+  showDos: boolean=true;
+  mostrar: boolean=false;
+  mostrarDos: boolean=true;
 
   constructor(private pedidoService: PedidoService) { }
 
@@ -21,12 +25,17 @@ export class MostrarComponent implements OnInit {
     //Pedidos en espera
     this.pedidoService.getPedidos(this.id).subscribe((data: Collection)=>{
       this.pedidos = data.pedidos;
-      //console.log(this.pedidos);
+      if(this.pedidos.length>0){
+        this.show=true;
+      }
+      
     });
     //Pedidos Aprobados
     this.pedidoService.getAprobados(this.id).subscribe((data: Collection)=>{
       this.pedidosAprobados = data.pedidos;
-      console.log(this.pedidosAprobados);
+      if(this.pedidosAprobados.length>0){
+        this.mostrar=true;
+      }
     });
   }
 
@@ -34,7 +43,10 @@ export class MostrarComponent implements OnInit {
     this.pedidoService.delete(id).subscribe(res => {
          this.pedidos = this.pedidos.filter(item => item.id !== id);
          console.log('Pedido deleted successfully!');
-    })
+    });
+    if(this.pedidos.length>0){
+      this.show=false;
+    }
   }
 
 }

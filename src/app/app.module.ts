@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { IndexComponent } from './pedido/index/index.component';
 import { CreateComponent } from './pedido/create/create.component';
 import { MostrarComponent } from './pedido/mostrar/mostrar.component';
+import { HistorialComponent } from './pedido/historial/historial.component';
 import { Route, RouterModule } from '@angular/router';
 
 
@@ -31,7 +32,8 @@ import { AgregarComponent } from './vehiculo/agregar/agregar.component';
     IndexComponent,
     CreateComponent,
     AgregarComponent,
-    MostrarComponent
+    MostrarComponent,
+    HistorialComponent
 
 
     

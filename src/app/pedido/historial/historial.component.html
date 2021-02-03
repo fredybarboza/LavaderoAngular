@@ -1,0 +1,24 @@
+<div class="container my-3 py-3">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+              <th>ID</th>
+              <th>SERVICIO</th>
+              <th>MONTO</th>
+              <th>ID VEHICULO</th>
+              <th>ACCIÓN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of pedidos">
+            <td>{{p.id}}</td>
+            <td>{{p.id_servicio}}</td>
+            <td>{{p.monto}}</td>
+            <td>{{p.id_vehiculo}}</td>
+            <td>
+              <button type="button" class="btn btn-danger" style="margin-right: 10px;">Ver Factura</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

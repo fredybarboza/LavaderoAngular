@@ -35,6 +35,14 @@ export class PedidoService {
       catchError(this.errorHandler)
     )
   }
+  
+  getFinalizados(id:string): Observable<Collection>
+  {
+    return this.httpClient.get<Collection>(this.apiURL + '/finalizados/' + id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
   getAprobados(id:string): Observable<Collection>
   {

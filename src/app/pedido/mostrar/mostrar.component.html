@@ -3,6 +3,7 @@
     <hr>
     <h5>Pedidos En Espera</h5>
     <hr>
+    <div *ngIf="show; else showDos">
     <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -25,9 +26,17 @@
           </tr>
         </tbody>
       </table>
+      
+    </div>
+    <ng-template #showDos>
+      <div class="alert alert-primary" role="alert">
+        Aquí apareceran tus pedidos en espera de aprobación
+      </div>
+    </ng-template>
     <hr>
     <h5>Pedidos En ejecución</h5>
     <hr>
+    <div  *ngIf="mostrar; else mostrarDos">
     <table class="table table-striped table-hover">
       <thead class="table-dark">
         <tr>
@@ -48,6 +57,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <ng-template #mostrarDos>
+    <div class="alert alert-primary" role="alert">
+      Aquí apareceran tus pedidos en ejecución. Consulta tus pedidos finalizados <a href="">Aquí</a>
+    </div>
+  </ng-template>
     <hr>
     
     <button type="button" class="btn btn-outline-primary">Historial</button>
