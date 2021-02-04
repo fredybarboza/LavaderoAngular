@@ -11,6 +11,8 @@ export class HistorialComponent implements OnInit {
 
   id: string;
   pedidos: Pedido[]=[];
+  pedido: Pedido[]=[];
+  show: boolean=false;
   constructor(private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
@@ -19,6 +21,14 @@ export class HistorialComponent implements OnInit {
     this.pedidoService.getFinalizados(this.id).subscribe((data: Collection)=>{
       this.pedidos = data.pedidos;
       console.log(this.pedidos);
+    });
+  }
+
+  viewFactura(id){
+    this.show=true;
+    this.pedidoService.getFactura(id).subscribe((data: Collection)=>{
+      this.pedido = data.pedidos;
+      console.log(this.pedido);
     });
   }
 

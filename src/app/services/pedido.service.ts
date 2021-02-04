@@ -52,7 +52,13 @@ export class PedidoService {
     )
   }
 
-  
+  getFactura(id:string): Observable<Collection>
+  {
+    return this.httpClient.get<Collection>(this.apiURL + '/facturas/' + id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
   delete(id:number){
     return this.httpClient.delete<Pedido>(this.apiURL + '/pedidos/' + id, this.httpOptions)

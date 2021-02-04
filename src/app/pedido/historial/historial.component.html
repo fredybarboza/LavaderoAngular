@@ -16,9 +16,44 @@
             <td>{{p.monto}}</td>
             <td>{{p.id_vehiculo}}</td>
             <td>
-              <button type="button" class="btn btn-danger" style="margin-right: 10px;">Ver Factura</button>
+              <button type="button" class="btn btn-danger" style="margin-right: 10px;" (click)="viewFactura(p.id)">Ver Factura</button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div *ngIf="show;">
+          <hr>
+          <div class="container my-3 py-3" style="border: 1px solid gray" *ngFor="let p of pedido">
+            <h2><b>CarWash</b></h2>
+            <i>Coronel Bogado-Itapúa Py.</i><br>
+            |||||||||||||||||||||||||||||||||||||||||||||
+            <hr>
+            FACTURA N° {{p.id}}
+            <div style="border: 1px solid #ddd; border-radius: 5px">NOMBRE: {{p.id_usuario}}</div>
+            <br>
+            <div style="border: 1px solid #ddd; border-radius: 5px">R.U.C/C.I: </div>
+            <hr>
+            <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">DESCRIPCION</th>
+              <th scope="col">Sub Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{p.id}}</td>
+              <td>{{p.id_servicio}}</td>
+              <td>{{p.monto}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>TOTAL</td>
+              <td>{{p.monto}}</td>
+            </tr>
+          </tbody>
+        </table>
+            </div>
+      </div>
 </div>
