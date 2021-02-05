@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-create',
@@ -23,8 +24,11 @@ export class CreateComponent implements OnInit {
   constructor(public pedidoService: PedidoService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id_usuario=localStorage.getItem('UF3K2+Ghj');
+    let b = this.id_usuario.toString();
+    let key = '12345';
     this.categoria=localStorage.getItem('id_categoria');
-    this.id_usuario=localStorage.getItem('id');
+    this.id_usuario=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
     this.id_vehiculo = this.route.snapshot.params['vehiculoId'];
     console.log(this.id_vehiculo);
     this.form = new FormGroup({

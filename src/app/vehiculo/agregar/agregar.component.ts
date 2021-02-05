@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-agregar',
@@ -15,7 +16,10 @@ export class AgregarComponent implements OnInit {
   constructor(private vehiculoService: VehiculoService) { }
 
   ngOnInit(): void {
-    this.id_usuario=localStorage.getItem('id');
+    this.id_usuario=localStorage.getItem('UF3K2+Ghj');
+    let b = this.id_usuario.toString();
+    let key='12345';
+    this.id_usuario=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
     this.form = new FormGroup({
       id_categoria: new FormControl('', Validators.required),
       id_usuario: new FormControl('', Validators.required),

@@ -4,6 +4,7 @@ import { Vehiculo ,Collection} from '../../models/vehiculo';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-index',
@@ -15,10 +16,17 @@ export class IndexComponent implements OnInit {
 
   vehiculos: Vehiculo[]=[];
   id: string;
+  n: string;
+  a: number;
+  r: number;
   constructor(public pedidoService: PedidoService, private router: Router, private userService: UserService,private vehiculoService: VehiculoService) {}
 
   ngOnInit(): void {
-    this.id=localStorage.getItem('id');
+    this.n=localStorage.getItem('UF3K2+Ghj');
+    let b = this.n.toString();
+    let key = '12345';
+    this.id=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    console.log(this.id); 
     
     if(this.id==null){
       this.router.navigateByUrl('login');
