@@ -44,9 +44,7 @@ export class MostrarComponent implements OnInit {
          this.pedidos = this.pedidos.filter(item => item.id !== id);
          console.log('Pedido deleted successfully!');
     });
-    if(this.pedidos.length>0){
-      this.show=false;
-    }
+    
   }
 
 }
