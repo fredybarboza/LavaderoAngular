@@ -28,6 +28,13 @@ export class VehiculoService {
     )
   }
 
+  delete(id:number){
+    return this.httpClient.delete<Vehiculo>(this.apiURL + '/vehiculos/' + id, this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   create(vehiculo:Vehiculo): Observable<Vehiculo> {
     return this.httpClient.post<Vehiculo>(this.apiURL + '/vehiculos', JSON.stringify(vehiculo), this.httpOptions)
     .pipe(
