@@ -53,6 +53,7 @@
             <td>{{v.matricula}}</td>
             <td>
               <button type="button" class="btn btn-primary" routerLink="/pedido/create/{{v.id}}" style="margin-right: 10px;" (click)="metodo(v.id_categoria)">Pedir Lavado</button>
+              <button type="button" class="btn btn-danger" (click)="deleteVehiculo(v.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>

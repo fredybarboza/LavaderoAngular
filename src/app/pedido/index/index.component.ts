@@ -36,6 +36,13 @@ export class IndexComponent implements OnInit {
     localStorage.removeItem('id');
     this.router.navigateByUrl('login');
   }
+
+  deleteVehiculo(id:number){
+    this.vehiculoService.delete(id).subscribe(res => {
+         this.vehiculos = this.vehiculos.filter(item => item.id !== id);
+         console.log('Vehiculo deleted successfully!');
+    });
+  }
   
   metodo(id_categoria){
     localStorage.setItem('id_categoria', id_categoria);
