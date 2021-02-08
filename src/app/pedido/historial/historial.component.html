@@ -23,15 +23,20 @@
       </table>
       <div *ngIf="show;">
           <hr>
+          <h5>FACTURA</h5>
           <div class="container my-3 py-3" style="border: 1px solid gray" *ngFor="let p of pedido">
             <h2><b>CarWash</b></h2>
             <i>Coronel Bogado-Itapúa Py.</i><br>
             |||||||||||||||||||||||||||||||||||||||||||||
             <hr>
             FACTURA N° {{p.id}}
-            <div style="border: 1px solid #ddd; border-radius: 5px">NOMBRE: {{p.id_usuario}}</div>
+            <div style="border: 1px solid #ddd; border-radius: 5px">NOMBRE/S: {{p.nombre}}</div>
             <br>
-            <div style="border: 1px solid #ddd; border-radius: 5px">R.U.C/C.I: </div>
+            <div style="border: 1px solid #ddd; border-radius: 5px">APELLIDO/S: {{p.apellido}}</div>
+            <br>
+            <div style="border: 1px solid #ddd; border-radius: 5px">R.U.C/C.I: {{p.ci}} </div>
+            <hr>
+            <div style="border: 1px solid #ddd; border-radius: 5px">DIRECCION: {{p.direccion}} </div>
             <hr>
             <table class="table">
           <thead>

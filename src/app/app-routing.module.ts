@@ -7,6 +7,7 @@ import { FacturaComponent } from '../app/pedido/factura/factura.component';
 import { HistorialComponent } from '../app/pedido/historial/historial.component';
 import { MostrarComponent } from '../app/pedido/mostrar/mostrar.component';
 import { AgregarComponent } from '../app/vehiculo/agregar/agregar.component';
+import { PerfilComponent } from '../app/perfil/perfil.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
    { path: 'agregar-vehiculo', component: AgregarComponent },
    { path: 'pedidos', component: MostrarComponent },
    { path: 'historial', component: HistorialComponent },
+   { path: 'perfil', component: PerfilComponent },
    { path: 'factura/:pedidoId', component: FacturaComponent },
  ];
 

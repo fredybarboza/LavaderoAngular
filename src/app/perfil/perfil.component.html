@@ -1,0 +1,44 @@
+<div class="container my-3 py-3">
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+    <!--NOMBRE-->
+    <div class="form-group">
+    <input formControlName="nombre" [(ngModel)]="user.nombre" id="nombre" type="text" class="form-control" placeholder="Nombre">
+       <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
+         <div *ngIf="f.nombre.errors.required">Nombre is required.</div>
+       </div>
+    </div>
+    <!--APELLIDO-->
+    <div class="form-group">
+        <input formControlName="apellido" [(ngModel)]="user.apellido" id="apellido" type="text" class="form-control" placeholder="Apellido">
+           <div *ngIf="f.apellido.touched && f.apellido.invalid" class="alert alert-danger">
+             <div *ngIf="f.apellido.errors.required">Apellido is required.</div>
+           </div>
+        </div>
+    <!--CI-->
+    <div class="form-group">
+        <input formControlName="ci" [(ngModel)]="user.ci" id="ci" type="text" class="form-control" placeholder="C.I">
+           <div *ngIf="f.ci.touched && f.ci.invalid" class="alert alert-danger">
+             <div *ngIf="f.ci.errors.required">CI is required.</div>
+           </div>
+        </div>
+    <!--DIRECCION-->
+    <div class="form-group">
+        <input formControlName="direccion" [(ngModel)]="user.direccion" id="direccion" type="text" class="form-control" placeholder="Direccion">
+           <div *ngIf="f.direccion.touched && f.direccion.invalid" class="alert alert-danger">
+             <div *ngIf="f.direccion.errors.required">Direccion is required.</div>
+           </div>
+        </div>
+    <!--CELULAR-->
+    <div class="form-group">
+        <input formControlName="celular" [(ngModel)]="user.celular" id="celular" type="text" class="form-control" placeholder="Celular">
+           <div *ngIf="f.celular.touched && f.celular.invalid" class="alert alert-danger">
+             <div *ngIf="f.celular.errors.required">Celular is required.</div>
+           </div>
+        </div>
+    <!--USER_ID-->
+    <div class="form-group">
+        <input formControlName="id_usuario" [(ngModel)]="user_id" id="id_usuario" type="text" class="form-control" placeholder="id_usuario">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+    </form>
+</div>

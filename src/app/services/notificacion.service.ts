@@ -1,21 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Pedido ,Entity, Collection} from '../models/pedido';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
    
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import {Notificacion, Coleccion, Entity } from '../models/notificacion'
+
 @Injectable({
   providedIn: 'root'
 })
-export class TrabajoService {
-
-  constructor(private httpClient: HttpClient) { }
+export class NotificacionService {
 
   private apiURL = "http://127.0.0.1:8000/api";
+  constructor(private httpClient: HttpClient) { }
 
-  obtenerTrabajos(id:number): Observable<Collection> {
-    return this.httpClient.get<Collection>(this.apiURL + '/empleados/'+id)
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+
+  getNotificaciones(id:string): Observable<Coleccion>{
+    return this.httpClient.get<Coleccion>(this.apiURL + '/notificaciones/' + id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  delete(id:number){
+    return this.httpClient.delete<Notificacion>(this.apiURL + '/notificaciones/' + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

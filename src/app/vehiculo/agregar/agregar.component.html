@@ -1,12 +1,14 @@
 <div class="container my-3 py-3">
+    <button type="button" class="btn btn-primary" routerLink="/index">Home</button><b> | NUEVO VEHICULO</b>
+    <hr>
     <form [formGroup]="form" (ngSubmit)="submit()" >
         <!--ID USUARIO-->
         <div class="form-group">
-            <input formControlName="id_usuario" [(ngModel)]="id_usuario" id="id_usuario" type="text" class="form-control" placeholder="id_usuario">
+            <input formControlName="id_usuario" [(ngModel)]="id_usuario" id="id_usuario" type="text" class="form-control" placeholder="id_usuario" hidden>
         </div>
         <!--CATEGORIA DEL VEHICULO-->
-        <div class="form-group">
-            <label for="categoria"><b>CATEGORIA</b></label><br>
+        <div class="form-group" style="border: 1px solid lightgrey; border-radius: 5px; padding: 5px;">
+            <label for="categoria" style="color: grey;">CATEGORIA</label><br>
             <label class="radio-inline my-3" style="margin-right: 5px;">
             <input formControlName="id_categoria" id="categoria1"  type="radio"  value="1"> AUTOMÓVIL
             </label>
@@ -22,9 +24,6 @@
             <label class="radio-inline my-3" style="margin-right: 5px;">
                 <input formControlName="id_categoria" id="categoria5" type="radio"  value="5"> CAMION DE CARGA O PASAJEROS
             </label>
-            <!--<div *ngIf="f.id_servicio.touched && f.id_servicio.invalid" class="alert alert-danger">
-                <div *ngIf="f.id_servicio.errors.required">Service is required.</div>
-            </div>-->
         </div>
         <!--MARCA-->
         <div class="form-group">

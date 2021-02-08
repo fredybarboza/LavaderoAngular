@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import { Vehiculo ,Collection} from '../../models/vehiculo';
+import { Notificacion ,Coleccion} from '../../models/notificacion';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import * as CryptoJS from 'crypto-js';
+import { NotificacionService } from 'src/app/services/notificacion.service';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 
 @Component({
   selector: 'app-index',
@@ -15,23 +18,30 @@ export class IndexComponent implements OnInit {
 
 
   vehiculos: Vehiculo[]=[];
+  notificaciones: Notificacion[]=[];
   id: string;
   n: string;
   a: number;
   r: number;
-  constructor(public pedidoService: PedidoService, private router: Router, private userService: UserService,private vehiculoService: VehiculoService) {}
+  name: string;
+  constructor(public pedidoService: PedidoService, private router: Router, private vehiculoService: VehiculoService, private notificacionService: NotificacionService, private encriptadoService: EncriptadoService) {}
 
   ngOnInit(): void {
+    this.name=localStorage.getItem('user');
     this.n=localStorage.getItem('UF3K2+Ghj');
-    let b = this.n.toString();
-    let key = '12345';
-    this.id=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
-    console.log(this.id); 
+    this.id=this.encriptadoService.desencriptar(this.n);
+    //console.log(this.id); 
     
-    if(this.id==null){
+    if(this.name==null){
       this.router.navigateByUrl('login');
     }
     else{
+      //MOSTRAR NOTIFICACIONES
+      this.notificacionService.getNotificaciones(this.id).subscribe((data: Coleccion)=>{
+        this.notificaciones = data.notificaciones;
+        console.log(this.notificaciones);
+      });
+      //MOSTARA VEHICULOS
       this.vehiculoService.getVehiculos(this.id).subscribe((data: Collection)=>{
         this.vehiculos = data.vehiculos;
         console.log(this.vehiculos);
@@ -40,8 +50,7 @@ export class IndexComponent implements OnInit {
   }
 
   salir(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.clear();
     this.router.navigateByUrl('login');
   }
 
@@ -49,6 +58,12 @@ export class IndexComponent implements OnInit {
     this.vehiculoService.delete(id).subscribe(res => {
          this.vehiculos = this.vehiculos.filter(item => item.id !== id);
          console.log('Vehiculo deleted successfully!');
+    });
+  }
+
+  deleteNotificacion(id:number){
+    this.notificacionService.delete(id).subscribe(res => {
+         this.notificaciones = this.notificaciones.filter(item => item.id !== id);
     });
   }
   

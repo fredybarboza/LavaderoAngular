@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import * as CryptoJS from 'crypto-js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar',
@@ -13,7 +14,7 @@ export class AgregarComponent implements OnInit {
   form!: FormGroup;
   id_usuario: string;
 
-  constructor(private vehiculoService: VehiculoService) { }
+  constructor(private vehiculoService: VehiculoService, private router: Router) { }
 
   ngOnInit(): void {
     this.id_usuario=localStorage.getItem('UF3K2+Ghj');
@@ -38,9 +39,9 @@ export class AgregarComponent implements OnInit {
   submit(){
     console.log(this.form.value);
     this.vehiculoService.create(this.form.value).subscribe(res => {
-         console.log(res);
-         alert("Vehiculo Guardado");
-         //this.router.navigateByUrl('index');
+         //console.log(res);
+         alert("Vehiculo Guardado!");
+         this.router.navigateByUrl('index');
     })
   }
 

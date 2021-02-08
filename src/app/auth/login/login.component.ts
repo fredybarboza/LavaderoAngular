@@ -4,6 +4,7 @@ import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angula
 import { HttpResponse } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   des: string;
   
 
-  constructor(private auth: CommonAuthService, private router: Router, private userService: UserService) { }
+  constructor(private auth: CommonAuthService, private router: Router, private userService: UserService,private encriptadoService: EncriptadoService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -43,18 +44,11 @@ export class LoginComponent implements OnInit {
         console.log(response.token);
         localStorage.removeItem('token');
         localStorage.setItem('token', response.token);
+        localStorage.setItem('user', response.name);
         this.u = response.id;
-        let a = this.u.toString();
-        let key = '12345';
-        //
-        this.encriptado = CryptoJS.AES.encrypt(a.trim(), key.trim()).toString();
+        this.encriptado=this.encriptadoService.encriptar(this.u);
         console.log(this.encriptado);
         localStorage.setItem('UF3K2+Ghj', this.encriptado);
-        //this.des = CryptoJS.AES.decrypt(b.trim(), a.trim()).toString(CryptoJS.enc.Utf8); 
-        //
-        //var desc = this.get('123',enc);
-        //localStorage.setItem('akjlmnk', desc);
-        //console.log(desc);
         alert("Estas dentro");
         this.router.navigate(['/index']);
       },
