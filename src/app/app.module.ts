@@ -23,6 +23,7 @@ import { Route, RouterModule } from '@angular/router';
 
 import { AgregarComponent } from './vehiculo/agregar/agregar.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 
 
@@ -36,7 +37,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AgregarComponent,
     MostrarComponent,
     HistorialComponent,
-    PerfilComponent
+    PerfilComponent,
+    InicioComponent
 
 
     

@@ -8,6 +8,7 @@ import { HistorialComponent } from '../app/pedido/historial/historial.component'
 import { MostrarComponent } from '../app/pedido/mostrar/mostrar.component';
 import { AgregarComponent } from '../app/vehiculo/agregar/agregar.component';
 import { PerfilComponent } from '../app/perfil/perfil.component';
+import { InicioComponent } from '../app/inicio/inicio.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
    { path: 'pedidos', component: MostrarComponent },
    { path: 'historial', component: HistorialComponent },
    { path: 'perfil', component: PerfilComponent },
+   { path: 'inicio', component: InicioComponent },
    { path: 'factura/:pedidoId', component: FacturaComponent },
  ];
 
