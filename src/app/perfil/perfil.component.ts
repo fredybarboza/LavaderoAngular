@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User ,Entity} from '../models/user';
 import { Router } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -15,6 +15,8 @@ export class PerfilComponent implements OnInit {
   id: string;
   form!: FormGroup;
   user_id: string;
+  crear: boolean=true;
+  editar: boolean=false;
   user: User={
     nombre: null,
     apellido: null,
@@ -24,18 +26,21 @@ export class PerfilComponent implements OnInit {
     direccion: null
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private encriptadoService: EncriptadoService, private router: Router) { }
 
   ngOnInit(): void {
     this.id=localStorage.getItem('UF3K2+Ghj');
-    let b = this.id.toString();
-    let key='12345';
-    this.id=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    this.id=this.encriptadoService.desencriptar(this.id);
     this.user_id=this.id;
     this.userService.getUser(this.id).subscribe((data: Entity)=>{
       this.user = data.user;
-      console.log(this.user);
+      if(this.user.nombre!=null){
+        this.crear=false;
+        this.editar=true;
+      }
+      //console.log(this.user);
     });
+    
     this.form = new FormGroup({
       id_usuario: new FormControl('', Validators.required),
       nombre: new FormControl('', Validators.required),
@@ -52,11 +57,14 @@ export class PerfilComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.form.value);
+    //console.log(this.form.value);
     this.userService.create(this.form.value).subscribe(res => {
-      console.log(res);
-      //alert("Vehiculo Guardado");
-      //this.router.navigateByUrl('index');
+      //console.log(res);
+      alert("Guardado!");
+      this.router.navigateByUrl('index');
+    },error => {
+      console.log(error);
+      alert('Datos Incorrectos!');
  })
     
   }

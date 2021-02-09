@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import { Pedido ,Collection} from '../../models/pedido';
 import { Router } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 
 @Component({
   selector: 'app-mostrar',
@@ -19,13 +19,11 @@ export class MostrarComponent implements OnInit {
   mostrar: boolean=false;
   mostrarDos: boolean=true;
 
-  constructor(private pedidoService: PedidoService) { }
+  constructor(private pedidoService: PedidoService,private encriptadoService: EncriptadoService) { }
 
   ngOnInit(): void {
     this.id=localStorage.getItem('UF3K2+Ghj');
-    let b = this.id.toString();
-    let key='12345';
-    this.id=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    this.id=this.encriptadoService.desencriptar(this.id);
     //Pedidos en espera
     this.pedidoService.getPedidos(this.id).subscribe((data: Collection)=>{
       this.pedidos = data.pedidos;

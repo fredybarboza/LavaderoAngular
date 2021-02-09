@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     this.auth.registerUser(this.registerForm).subscribe(success => {
       console.log(success);
-      alert("Usuario creado");
+      alert("Usuario creado!");
       this.route.navigate(['/login']);
 
     },error => { 

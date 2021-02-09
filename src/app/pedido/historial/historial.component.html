@@ -1,4 +1,7 @@
 <div class="container my-3 py-3">
+  <button type="button" class="btn btn-primary" routerLink="/index">Home</button> <b> | HISTORIAL DE LAVADOS</b>
+  <hr>
+  <div *ngIf="table;">
     <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -21,9 +24,13 @@
           </tr>
         </tbody>
       </table>
+    </div>
       <div *ngIf="show;">
           <hr>
           <h5>FACTURA</h5>
+          <div class="alert alert-primary" role="alert" *ngIf="perfil;">
+            Por favor complete su perfil para generar su factura. <a href="/perfil">Completar Perfil</a>
+          </div>
           <div class="container my-3 py-3" style="border: 1px solid gray" *ngFor="let p of pedido">
             <h2><b>CarWash</b></h2>
             <i>Coronel Bogado-Itapúa Py.</i><br>
@@ -42,7 +49,7 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">DESCRIPCION</th>
+              <th scope="col">SERVICIO</th>
               <th scope="col">Sub Total</th>
             </tr>
           </thead>
@@ -59,6 +66,10 @@
             </tr>
           </tbody>
         </table>
+      
             </div>
+      </div>
+      <div class="alert alert-primary" role="alert" *ngIf="alert;">
+        Ningún pedido finalizado.
       </div>
 </div>

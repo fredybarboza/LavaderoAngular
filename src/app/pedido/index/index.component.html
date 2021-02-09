@@ -52,12 +52,12 @@
   </div>
 </div>
   <h4 style="background: whitesmoke; border-left: 2px solid #343c44;">&nbsp;Vehiculos </h4>
-  
+  <div *ngIf="table;">
     <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
               <th>ID</th>
-              <th>ID USUARIO</th>
+              <th>CATEGORIA</th>
               <th>MARCA</th>
               <th>MODELO</th>
               <th>COLOR</th>
@@ -68,7 +68,7 @@
         <tbody>
           <tr *ngFor="let v of vehiculos">
             <td>{{v.id}}</td>
-            <td>{{v.id_usuario}}</td>
+            <td>{{v.id_categoria}}</td>
             <td>{{v.marca}}</td>
             <td>{{v.modelo}}</td>
             <td>{{v.color}}</td>
@@ -80,6 +80,12 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div *ngIf="alert;">
+      <div class="alert alert-primary" role="alert">
+        Aquí se mostraran tus vehiculos. Si no tienes agregado ninguno ingresa en <a href="/agregar-vehiculo">agregar vehiculo.</a>
+      </div>
+    </div>
 </div>
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3 bg-dark text-light">© 2020 Copyright:

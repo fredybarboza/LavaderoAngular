@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
-import * as CryptoJS from 'crypto-js';
 import { Router } from '@angular/router';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 
 @Component({
   selector: 'app-agregar',
@@ -14,13 +14,11 @@ export class AgregarComponent implements OnInit {
   form!: FormGroup;
   id_usuario: string;
 
-  constructor(private vehiculoService: VehiculoService, private router: Router) { }
+  constructor(private vehiculoService: VehiculoService, private router: Router, private encriptadoService: EncriptadoService) { }
 
   ngOnInit(): void {
     this.id_usuario=localStorage.getItem('UF3K2+Ghj');
-    let b = this.id_usuario.toString();
-    let key='12345';
-    this.id_usuario=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    this.id_usuario=this.encriptadoService.desencriptar(this.id_usuario);
     this.form = new FormGroup({
       id_categoria: new FormControl('', Validators.required),
       id_usuario: new FormControl('', Validators.required),
@@ -42,6 +40,9 @@ export class AgregarComponent implements OnInit {
          //console.log(res);
          alert("Vehiculo Guardado!");
          this.router.navigateByUrl('index');
+        },error => {
+          console.log(error);
+          alert('Datos Incorrectos!');
     })
   }
 
