@@ -1,4 +1,4 @@
-/* Global */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,7 +41,6 @@ ul {
   width: 50px;
 }
 
-/* Navbar Left */
 .nav-main ul {
   display: flex;
 }
@@ -77,7 +76,7 @@ hr {
   display: none;
 }
 
-/* SHOWCASE */
+/* principal */
 
 .btn {
   cursor: pointer;
@@ -98,7 +97,7 @@ hr {
 .showcase {
   width: 100%;
   height: 550px;
-  background: url("img/muuuuu.jpg") no-repeat center center/cover;
+  background: url("./assets/img/muuuuu.jpg") no-repeat center center/cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +107,6 @@ hr {
   margin-bottom: 20px;
   color: #fff;
 }
-
 .showcase h2,
 .showcase p {
   margin-bottom: 10px;
@@ -118,7 +116,7 @@ hr {
   margin-top: 20px;
 }
 
-/* News Cards */
+
 .news-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -144,11 +142,11 @@ hr {
   font-weight: bold;
 }
 
-/* CARDS BANNER ONE */
+/* Banner de tarjeta */
 .cards-banner-one {
   width: 100%;
   height: 350px;
-  background: url("./img/tech-red.jpg");
+  background: url("./assets//img/tech-red.jpg");
   margin-bottom: 40px;
 }
 
@@ -163,11 +161,11 @@ hr {
   margin: 10px 0 20px 0;
 }
 
-/* CARDS BANNER TWO*/
+/* Banner de tarjeta 2*/
 .cards-banner-two {
   width: 100%;
   height: 350px;
-  background: url("./img/image-five.jpg") no-repeat center center/cover;
+  background: url("./assets//img/image-five.jpg") no-repeat center center/cover;
 }
 
 .cards-banner-two .content {
@@ -175,7 +173,7 @@ hr {
   padding: 100px 0 0 30px;
 }
 
-/* Follow */
+/* redes sociales */
 .social {
   margin: 50px;
 }
