@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import * as CryptoJS from 'crypto-js';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
+
 
 @Component({
   selector: 'app-create',
@@ -21,16 +22,14 @@ export class CreateComponent implements OnInit {
   id_usuario: string;
   id_vehiculo: string;
   
-  constructor(public pedidoService: PedidoService,private route: ActivatedRoute) { }
+  constructor(public pedidoService: PedidoService,private route: ActivatedRoute, private router: Router, private encriptadoService: EncriptadoService) { }
 
   ngOnInit(): void {
     this.id_usuario=localStorage.getItem('UF3K2+Ghj');
-    let b = this.id_usuario.toString();
-    let key = '12345';
     this.categoria=localStorage.getItem('id_categoria');
-    this.id_usuario=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    this.id_usuario=this.encriptadoService.desencriptar(this.id_usuario);
     this.id_vehiculo = this.route.snapshot.params['vehiculoId'];
-    console.log(this.id_vehiculo);
+    //console.log(this.id_vehiculo);
     this.form = new FormGroup({
       id_servicio: new FormControl('', Validators.required),
       id_categoria: new FormControl('', Validators.required),
@@ -118,11 +117,11 @@ export class CreateComponent implements OnInit {
   
 
   submit(){
-    console.log(this.form.value);
+    //console.log(this.form.value);
     this.pedidoService.create(this.form.value).subscribe(res => {
-         console.log(res);
-         alert("Pedido Guardado");
-         //this.router.navigateByUrl('index');
+         //console.log(res);
+         alert("Pedido Realizado!");
+         this.router.navigateByUrl('/pedidos');
     })
   }
 

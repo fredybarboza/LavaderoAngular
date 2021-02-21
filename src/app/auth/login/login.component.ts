@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.encriptado=this.encriptadoService.encriptar(this.u);
         console.log(this.encriptado);
         localStorage.setItem('UF3K2+Ghj', this.encriptado);
-        alert("Estas dentro");
+        alert("Bienvenido!");
         this.router.navigate(['/index']);
       },
       (error) => { 

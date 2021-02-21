@@ -1,13 +1,11 @@
 <div class="container my-3">
-    <button type="button" class="btn btn-primary" routerLink="/index">Back</button>
-    <hr style="border: 1px solid #4040ff;">
-    <h3>Nuevo Pedido</h3>
-    <hr style="border: 1px solid #4040ff;;">
+    <button type="button" class="btn btn-primary" routerLink="/index">Back</button><b> | Nuevo Pedido</b>
+    <hr>
     <form [formGroup]="form" (ngSubmit)="submit()" >
        
         <!--SERVICIO-->
         <div class="form-group">
-            <label for="servicio"><b>SERVICIOS</b></label><br>
+            <label for="servicio"><b>Seleccione Un Servicio</b></label><br>
             <label class="radio-inline my-3" style="margin-right: 5px;">
             <input formControlName="id_servicio" id="id_servicio"  type="radio"  value="1" (click)="getPrice(1)"> FULL
             </label>
@@ -54,7 +52,8 @@
        <div class="form-group">
         <input formControlName="id_categoria" id="id_categoria" type="text" [(ngModel)]="categoria" hidden>
        </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+       <hr>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Realizar Pedido</button>
     </form>
     
     

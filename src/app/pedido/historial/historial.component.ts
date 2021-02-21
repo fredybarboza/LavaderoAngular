@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from '../../services/pedido.service';
 import { Pedido ,Collection} from '../../models/pedido';
-import * as CryptoJS from 'crypto-js';
+import { EncriptadoService } from 'src/app/services/encriptado.service';
 
 @Component({
   selector: 'app-historial',
@@ -14,17 +14,25 @@ export class HistorialComponent implements OnInit {
   pedidos: Pedido[]=[];
   pedido: Pedido[]=[];
   show: boolean=false;
-  constructor(private pedidoService: PedidoService) { }
+  table: boolean=false;
+  alert: boolean=false;
+  perfil: boolean=false;
+  constructor(private pedidoService: PedidoService, private encriptadoService: EncriptadoService) { }
 
   ngOnInit(): void {
     this.id=localStorage.getItem('UF3K2+Ghj');
-    let b = this.id.toString();
-    let key='12345';
-    this.id=CryptoJS.AES.decrypt(b.trim(), key.trim()).toString(CryptoJS.enc.Utf8);
+    this.id=this.encriptadoService.desencriptar(this.id);
     //Pedidos Finalizados
     this.pedidoService.getFinalizados(this.id).subscribe((data: Collection)=>{
       this.pedidos = data.pedidos;
-      console.log(this.pedidos);
+      //console.log(this.pedidos);
+      if(this.pedidos.length!=0){
+        this.alert=false;
+         this.table=true;
+      }
+      else{
+        this.alert=true;
+      }
     });
   }
 
@@ -33,6 +41,9 @@ export class HistorialComponent implements OnInit {
     this.pedidoService.getFactura(id).subscribe((data: Collection)=>{
       this.pedido = data.pedidos;
       console.log(this.pedido);
+      if(this.pedido.length==0){
+        this.perfil=true;
+      }
     });
   }
 
